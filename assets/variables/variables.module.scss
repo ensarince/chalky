@@ -1,0 +1,25 @@
+
+$chalky_white: #f9fafa;
+$chalky_soft: #B3ABAA;
+$chalky_red: #D34A4E;
+$chalky_soft2: #9D9E93;
+$chalky_blue: #2C3448;
+
+$xs: 320px;
+$sm: 481px;
+$md: 769px;
+$lg: 1025px;
+$xl: 1201px;
+
+:export {
+    chalky_white: $chalky_white;
+    chalky_soft: $chalky_soft;
+    chalky_red: $chalky_red;
+    chalky_soft2: $chalky_soft2;
+    chalky_blue: $chalky_blue;
+    xs: $xs;
+    sm: $sm;
+    md: $md;
+    lg: $lg;
+    xl: $xl;
+}

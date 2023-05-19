@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "705406373726",
+    "project_id": "chalky-80c13",
+    "storage_bucket": "chalky-80c13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705406373726:android:d267ef167f02da59d849cf",
+        "android_client_info": {
+          "package_name": "com.ensarince.chalky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705406373726-bju0ei2q46lnpurlrr35lgh42ooljbst.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVOu9TbLF1tV6d-u9v6T0oTNNq6_kmxjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705406373726-bju0ei2q46lnpurlrr35lgh42ooljbst.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
