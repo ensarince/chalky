@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react'
 //import { useDispatch, useSelector } from 'react-redux';
 //import { addToMatches, removeFromMatches, selectMatches, setMatches } from '../features/matchSlice';
 import { ArrowLeftIcon } from 'react-native-heroicons/solid';
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import tw from "twrnc"
-//import database from '@react-native-firebase/database';
 import firestore from '@react-native-firebase/firestore';
 import '@react-native-firebase/firestore';
 
@@ -52,18 +51,18 @@ const MatchScreen = () => {
           <Text style={tw`text-white text-xl font-bold`}>Here is your matches:</Text>
         </View>
 
-        {/* here comes each match as rows with name and picture as background */}
         <ScrollView contentContainerStyle={tw`flex gap-2.5 justify-center items-center`}>            
           {matchData.map(match => (
-              <TouchableOpacity style={tw`flex items-center justify-center w-100 h-24 bg-[#D34A4E] rounded px-5`} key={match.userData.login.uuid}>
-                <ImageBackground source={{ uri: match.userData.picture.large }} style={tw`w-full rounded-md h-full`} resizeMode="cover">
+              <TouchableOpacity onPress={() => navigation.navigate("Profile", { userId: match.userId })}
+                style={tw`flex items-center justify-center w-100 h-24 bg-[#D34A4E] rounded px-5`} key={match.login.uuid}>
+                <ImageBackground source={{ uri: match.picture.large }} style={tw`w-full rounded-md h-full`} resizeMode="cover">
                   <View style={tw`bg-black bg-opacity-50 rounded-md w-full h-full flex flex-row items-center justify-between px-5 py-3`}>
                     <View>
-                      <Text style={tw`text-white font-bold text-lg`}>{`${match.userData.name.first} ${match.userData.name.last}`}</Text>
-                      <Text style={tw`text-gray-200`}>{match.userData.location.city}, {match.userData.location.country}</Text>
+                      <Text style={tw`text-white font-bold text-lg`}>{`${match.name.first} ${match.name.last}`}</Text>
+                      <Text style={tw`text-gray-200`}>{match.location.city}, {match.location.country}</Text>
                     </View>
                     <View>
-                      <Text style={tw`text-white font-bold text-lg`}>{match.userData.dob.age}</Text>
+                      <Text style={tw`text-white font-bold text-lg`}>{match.dob.age}</Text>
                     </View>
                   </View>
                 </ImageBackground>

@@ -111,7 +111,7 @@ const HomeScreen = () => {
                 style={tw`absolute top-15 left-5 bg-[#D34A4E] p-2 rounded-full border border-[#f9fafa]`}
             >
             <HeartIcon size={20} color="#f9fafa" />
-            </TouchableOpacity>
+        </TouchableOpacity>
 
         {/* here comes the card */}
         <View style={styles.container}>
