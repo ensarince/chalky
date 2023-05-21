@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import tw from "twrnc"
 import useAuth from '../hooks/useAuth'
@@ -52,22 +52,26 @@ const HomeScreen = () => {
   const db = firestore();
 
   // Save swipe rights to Firestore
-  const saveSwipeRightToFirestore = (userId, userData) => {
-    const swipeRef = db.collection('swipedRight').doc();
+  const saveSwipeRightToFirestore = async(userId, userData) => {
+    const swipeRef = await db.collection('swipedRight').doc();
     swipeRef.set({
       userId,
-      userData,
-    });
+      userData,    
+    }).then(async() => {
+      await db.collection('swipedRight').doc(swipeRef.id).update({userId:swipeRef.id})
+  });
   };
 
     // Save swipe rights to Firestore
-    const saveSwipeLeftToFirestore = (userId, userData) => {
-      const swipeRef = db.collection('swipedLeft').doc();
+    const saveSwipeLeftToFirestore = async(userId, userData) => {
+      const swipeRef = await db.collection('swipedLeft').doc();
       swipeRef.set({
         userId,
-        userData,
-      });
-    };
+        userData,    
+      }).then(async() => {
+        await db.collection('swipedLeft').doc(swipeRef.id).update({userId:swipeRef.id})
+    });
+  }
 
   const handleYup = (data) => {
     console.log("YEEEY")
@@ -89,13 +93,17 @@ const HomeScreen = () => {
   }
 
   useEffect(() => {
-    fetch("https://randomuser.me/api/")
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchCardsData = async () => {
+      try {
+        const response = await fetch("https://randomuser.me/api/");
+        const data = await response.json();
         const results = data.results;
-        setCards(results);
-      })
-      .catch((error) => console.error(error));
+        setCards((prevCards) => [...prevCards, ...results]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCardsData();
   }, []);
 
 
