@@ -7,7 +7,6 @@ import firestore from '@react-native-firebase/firestore';
 import '@react-native-firebase/firestore';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Avatar, Card, IconButton } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ProfileScreen = ({ route }) => {
@@ -44,24 +43,34 @@ return (
 
 
         {/* here comes the profile */}
-        <Card style={{ marginTop: 50, marginHorizontal: 20, borderRadius: 10 }}>
-            <Card.Content style={{ alignItems: 'center' }}>
-                <Avatar.Image size={120} source={{ uri: userData.picture.large }} />
-                <Text style={{ marginTop: 20, fontSize: 24, fontWeight: 'bold', color: '#D34A4E' }}>{`${userData.name.title} ${userData.name.first} ${userData.name.last}`}</Text>
-            </Card.Content>
-        </Card>
+        <View style={tw`flex items-center mt-15`}>
+            <Image
+                source={{ uri: userData.picture.large }}
+                style={tw`w-40 h-40 rounded-full mb-5`}
+            />
+            <Text style={tw`text-2xl font-bold text-white mb-3`}>
+                {userData.name.title} {userData.name.first} {userData.name.last}
+            </Text>
 
-        <Card style={{ margin: 20, borderRadius: 10 }}>
-            <Card.Title title="Personal Information" titleStyle={{ fontSize: 16, fontWeight: 'bold', color: '#D34A4E' }} />
-
-        <Card.Content>
-            <Text style={{ color: '#D34A4E' }}>{`Gender: ${userData.gender}`}</Text>
-            <Text style={{ color: '#D34A4E' }}>{`Date of Birth: ${userData.dob.date}`}</Text>
-            <Text style={{ color: '#D34A4E' }}>{`Email: ${userData.email}`}</Text>
-            <Text style={{ color: '#D34A4E' }}>{`Phone: ${userData.phone}`}</Text>
-            <Text style={{ color: '#D34A4E' }}>{`Location: ${userData.location.city}, ${userData.location.state}, ${userData.location.country}`}</Text>
-        </Card.Content>
-        </Card>
+            <View style={tw`bg-white rounded-lg p-4 w-full shadow-lg`}>
+                <Text style={tw`text-xl font-bold text-[#D34A4E] mb-2`}>Details:</Text>
+                <Text style={tw`text-lg text-black`}>
+                    Gender: {userData.gender}
+                </Text>
+                <Text style={tw`text-lg text-black`}>
+                    Email: {userData.email}
+                </Text>
+                <Text style={tw`text-lg text-black`}>
+                    Date of Birth: {userData.dob.date}
+                </Text>
+                <Text style={tw`text-lg text-black`}>
+                    Phone: {userData.phone}
+                </Text>
+                <Text style={tw`text-lg text-black`}>
+                    Location: {userData.location.city}, {userData.location.country}
+                </Text>
+            </View>
+        </View>
 
         <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9fafa', marginHorizontal: 20, borderRadius: 10, paddingVertical: 15, marginBottom: 20 }}>
             <Icon name="account-edit" size={24} color="#D34A4E" />
